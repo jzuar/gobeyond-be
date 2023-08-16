@@ -59,8 +59,9 @@
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit",
         "post-install-cmd": [
-            "php artisan clear-compiled",
-            "chmod -R 777 public/"
-        ]
+            "chmod -R 755 public/",
+            "chmod 644 public/index.php"
+        ],
+        "heroku-postdeploy": "echo 'web: vendor/bin/heroku-php-apache2 public/' > Procfile"
     }
 }
