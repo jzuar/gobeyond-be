@@ -5,7 +5,6 @@ namespace App\Application\Actions\Email;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Tuupola\Middleware\CorsMiddleware;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -14,18 +13,6 @@ class EmailAction
 {
     public function __invoke(Request $request, Response $response): Response
     {
-        // Configura el middleware CORS
-        $cors = new CorsMiddleware([
-            "origin" => ["*"], // Cambia esto con los dominios permitidos
-            "methods" => ["GET", "POST", "OPTIONS"],
-            "headers.allow" => ["Authorization", "Content-Type"],
-            "headers.expose" => [],
-            "credentials" => true,
-            "cache" => 0,
-        ]);
-
-        // Aplica el middleware CORS a la solicitud
-        $request = $cors->process($request);
 
         $data = $request->getParsedBody();
 
