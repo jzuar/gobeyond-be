@@ -20,6 +20,11 @@ class EmailAction
         $mail = new PHPMailer(true);
 
         try {
+            // Recuperar archivos subidos
+            $uploadedFiles = $request->getUploadedFiles();
+            $frontPhoto = $uploadedFiles['frontPhoto'];
+            $backPhoto = $uploadedFiles['backPhoto'];
+
             $mail->isSMTP();
             $mail->Host = 'mail.blessingstoyoucr.com'; //
             $mail->SMTPAuth = true;
@@ -39,11 +44,17 @@ class EmailAction
             $mail->Subject = 'Beyond Demo';
             $mail->Body = 'Estos son los datos del formulario:' . "<br>";
 
-            if (!empty($_FILES['frontPhoto']['tmp_name']) && !empty($_FILES['backPhoto']['tmp_name'])) {
-                $mail->AddAttachment($_FILES['frontPhoto']['tmp_name'], 'img1.jpg');
-                $mail->AddAttachment($_FILES['backPhoto']['tmp_name'], 'img2.jpg');
+            // Adjuntar las imágenes al correo
+            $mail->addStringAttachment($frontPhoto->getStream()->getContents(), 'frontPhoto.jpg');
+            $mail->addStringAttachment($backPhoto->getStream()->getContents(), 'backPhoto.jpg');
+
+
+            if (!empty($frontPhoto) && !empty($backPhoto)) {
+                // Adjuntar las imágenes al correo
+                $mail->addStringAttachment($frontPhoto->getStream()->getContents(), 'img1.jpg');
+                $mail->addStringAttachment($backPhoto->getStream()->getContents(), 'img2.jpg');
             }
-            
+
             foreach ($data as $key => $value) {
 
                 $mail->Body .= $key . ': ' . $value . "<br>";
