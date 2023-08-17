@@ -21,16 +21,18 @@ class EmailAction
 
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; //
+            $mail->Host = 'mail.blessingstoyoucr.com'; //
             $mail->SMTPAuth = true;
-            $mail->Username = 'desarrollofreelancejzuar@gmail.com';
-            $mail->Password = 'Desarrollando2023.';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Username = 'it@blessingstoyoucr.com';
+            $mail->Password = 'GoBeyond2023';
+            $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('desarrollofreelancejzuar@gmail.com', 'Desarrollo Freelance JZUAR');
-            $data['email'] = "juandiegoster@gmail.com";
-            $mail->addAddress($data['email']); // Cambiar al destinatario correcto
+            $mail->setFrom('it@blessingstoyoucr.com', 'Desarrollo Freelance JZUAR');
+            //$data['email'] = "juandiegoster@gmail.com";
+            $mail->addAddress($data['email'], $data['nombre']);
+            $mail->addCC('4peacenfreedom@gmail.com');
+            $mail->addBCC('juandiegoster@gmail.com');
 
             // Contenido del correo
             $mail->isHTML(true);
