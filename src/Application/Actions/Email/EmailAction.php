@@ -39,7 +39,13 @@ class EmailAction
             $mail->Subject = 'Beyond Demo';
             $mail->Body = 'Estos son los datos del formulario:' . "<br>";
 
+            if (!empty($_FILES['frontPhoto']['tmp_name']) && !empty($_FILES['backPhoto']['tmp_name'])) {
+                $mail->AddAttachment($_FILES['frontPhoto']['tmp_name'], 'img1.jpg');
+                $mail->AddAttachment($_FILES['backPhoto']['tmp_name'], 'img2.jpg');
+            }
+            
             foreach ($data as $key => $value) {
+
                 $mail->Body .= $key . ': ' . $value . "<br>";
             }
 
