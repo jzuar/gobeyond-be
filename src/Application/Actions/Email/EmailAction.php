@@ -46,10 +46,13 @@ class EmailAction
 
 
 
-            if (!empty($frontPhoto) && !empty($backPhoto)) {
-                // Adjuntar las imágenes al correo
-                $mail->addStringAttachment($frontPhoto->getStream()->getContents(), 'img1.jpg');
-                $mail->addStringAttachment($backPhoto->getStream()->getContents(), 'img2.jpg');
+            // Añade los archivos adjuntos
+            if (isset($data['frontPhoto']) && isset($data['backPhoto'])) {
+                $frontPhotoData = base64_decode($data['frontPhoto']);
+                $backPhotoData = base64_decode($data['backPhoto']);
+
+                $mail->AddStringAttachment($frontPhotoData, 'img1.jpg', 'base64', 'image/jpeg');
+                $mail->AddStringAttachment($backPhotoData, 'img2.jpg', 'base64', 'image/jpeg');
             }
 
             foreach ($data as $key => $value) {
