@@ -8,7 +8,7 @@ use Slim\App;
 
 return function (App $app) {
     $app->add(SessionMiddleware::class);
-
+    $app->addBodyParsingMiddleware();
     // Configurar el middleware CORS
    /* $app->add(new CorsMiddleware([
         "origin" => ["*"],

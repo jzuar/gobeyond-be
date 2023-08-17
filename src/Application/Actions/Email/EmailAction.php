@@ -44,7 +44,7 @@ class EmailAction
             $mail->Subject = 'Beyond Demo';
             $mail->Body = 'Estos son los datos del formulario:' . "<br>";
 
-            
+
 
             if (!empty($frontPhoto) && !empty($backPhoto)) {
                 // Adjuntar las imágenes al correo
