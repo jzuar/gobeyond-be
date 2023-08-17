@@ -30,7 +30,7 @@ class EmailAction
 
             $mail->setFrom('it@blessingstoyoucr.com', 'Desarrollo Freelance JZUAR');
             //$data['email'] = "juandiegoster@gmail.com";
-            $mail->addAddress($data['email'], $data['nombre']);
+            $mail->addAddress($data['correo'], $data['nombre']);
             $mail->addCC('4peacenfreedom@gmail.com');
             $mail->addBCC('juandiegoster@gmail.com');
 
