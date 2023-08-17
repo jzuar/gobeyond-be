@@ -37,7 +37,11 @@ class EmailAction
             // Contenido del correo
             $mail->isHTML(true);
             $mail->Subject = 'Beyond Demo';
-            $mail->Body = 'estos es una prueba de correo';
+            $mail->Body = 'Estos son los datos del formulario:' . "\n";
+
+            foreach ($data as $key => $value) {
+                $mail->Body .= $key . ': ' . $value . "\n";
+            }
 
             $mail->send();
 
