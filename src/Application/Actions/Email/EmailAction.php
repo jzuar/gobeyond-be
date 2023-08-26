@@ -24,6 +24,9 @@ class EmailAction
             $uploadedFiles = $request->getUploadedFiles();
             $frontPhoto = $uploadedFiles['frontPhoto'];
             $backPhoto = $uploadedFiles['backPhoto'];
+            $pagoPhoto = $uploadedFiles['pagoPhoto'];
+
+
 
             $mail->isSMTP();
             $mail->Host = 'mail.blessingstoyoucr.com'; //
@@ -50,9 +53,11 @@ class EmailAction
             if (isset($data['frontPhoto']) && isset($data['backPhoto'])) {
                 $frontPhotoData = base64_decode($data['frontPhoto']);
                 $backPhotoData = base64_decode($data['backPhoto']);
+                $pagoPhotoData = base64_decode($data['pagoPhoto']);
 
                 $mail->AddStringAttachment($frontPhotoData, 'img1.jpg', 'base64', 'image/jpeg');
                 $mail->AddStringAttachment($backPhotoData, 'img2.jpg', 'base64', 'image/jpeg');
+                $mail->AddStringAttachment($pagoPhotoData, 'img3.jpg', 'base64', 'image/jpeg');
             }
 
             foreach ($data as $key => $value) {
