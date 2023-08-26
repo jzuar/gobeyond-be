@@ -50,7 +50,7 @@ class EmailAction
 
 
             // Añade los archivos adjuntos
-            if (isset($data['frontPhoto']) && isset($data['backPhoto'])) {
+            if (isset($data['frontPhoto']) && isset($data['backPhoto']) && isset($data['pagoPhoto'])) {
                 $frontPhotoData = base64_decode($data['frontPhoto']);
                 $backPhotoData = base64_decode($data['backPhoto']);
                 $pagoPhotoData = base64_decode($data['pagoPhoto']);
