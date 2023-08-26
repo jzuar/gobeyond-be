@@ -50,10 +50,10 @@ class EmailAction
 
 
             // Añade los archivos adjuntos
-            if (isset($data['frontPhoto']) && isset($data['backPhoto']) && isset($data['pagoPhoto'])) {
-                $frontPhotoData = base64_decode($data['frontPhoto']);
-                $backPhotoData = base64_decode($data['backPhoto']);
-                $pagoPhotoData = base64_decode($data['pagoPhoto']);
+            if ($frontPhoto && $backPhoto && $pagoPhoto) {
+                $frontPhotoData = base64_decode($pagoPhoto);
+                $backPhotoData = base64_decode($backPhoto);
+                $pagoPhotoData = base64_decode($pagoPhoto);
 
                 $mail->AddStringAttachment($frontPhotoData, 'img1.jpg', 'base64', 'image/jpeg');
                 $mail->AddStringAttachment($backPhotoData, 'img2.jpg', 'base64', 'image/jpeg');
